@@ -162,7 +162,7 @@ if __name__ == '__main__':
 
     for i in xrange(sample_num):
         print(i)
-        image_name = 'img_{04d}'.format(i)
+        image_name = 'img_{:04d}'.format(i)
         save_name = os.path.join(savedir, image_name + '.txt') 
         demo(net, image_name, detclass, ssdir, imgdir, save_name)
 
