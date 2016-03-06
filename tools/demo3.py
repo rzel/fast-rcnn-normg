@@ -73,7 +73,7 @@ def vis_detections(im, class_name, dets, thresh=0.5):
     plt.tight_layout()
     plt.draw()
 
-def demo(net, image_name, classes, ssdir, imgdir, savefile):
+def demo(net, image_name, classes, ssdir, imgdir, normdir, savefile):
     """Detect object classes in an image using pre-computed object proposals."""
 
     box_file = os.path.join(ssdir, image_name + '.mat')
@@ -82,8 +82,13 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
     # Load the demo image
     im_file = os.path.join(imgdir, image_name + '.jpg')
     im = cv2.imread(im_file)
-    im = np.reshape(im, (1, im.shape[0], im.shape[1], 3))
     #print(np.shape(im))
+
+    # Load the demo image
+    norm_file = os.path.join(normdir, image_name + '.jpg')
+    norm_im = cv2.imread(norm_file)
+    
+    im = (im, norm_im)
 
     # Detect all object classes and regress object bounds
     timer = Timer()
@@ -149,17 +154,18 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
 
-    prototxt = '/nfs.yoda/xiaolonw/fast_rcnn/fast-rcnn-norm2/output/training_demo/alexnet_rgb/test.prototxt.images'
-    caffemodel = '/nfs.yoda/xiaolonw/fast_rcnn/fast-rcnn-distillation/output/alexnet_rgb_alexnet_hha/nyud2_images+hha_2015_trainval/fast_rcnn_iter_40000_rgb.caffemodel'
-
+    prototxt = '/nfs.yoda/xiaolonw/fast_rcnn/fast-rcnn-norm2/scripts/joint_rgbnorm/test.prototxt.images+hha'
+    caffemodel = '/nfs.yoda/xiaolonw/fast_rcnn/models_norm/alexnet_rgb/fast_rcnn_joint.caffemodel'
+    
     # Load pre-computed Selected Search object proposals
-    # ssdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2_ss/'
-    # imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2/'
-    # savedir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2_txt/'
+    ssdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2_ss/'
+    imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2/'
+    normdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2_norm/'
+    savedir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2_txt2/'
 
-    ssdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64_ss/'
-    imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64/'
-    savedir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64_txt/'
+    # ssdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64_ss/'
+    # imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64/'
+    # savedir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64_txt/'
 
 
     sample_num = 2000
@@ -174,7 +180,7 @@ if __name__ == '__main__':
         # print(i)
         image_name = 'img_{:04d}'.format(i + 1)
         save_name = os.path.join(savedir, image_name + '.txt') 
-        demo(net, image_name, detclass, ssdir, imgdir, save_name)
+        demo(net, image_name, detclass, ssdir, imgdir, normdir, save_name)
 
     # plt.show()
 
