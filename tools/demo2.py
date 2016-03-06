@@ -99,7 +99,10 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
     thresh = 0.3
     fid = open(savefile,'w')
 
+    cnt = 0
+
     for cls in classes:
+        cnt = cnt + 1
         cls_ind = CLASSES.index(cls)
         cls_boxes = boxes[:, 4*cls_ind:4*(cls_ind + 1)]
         cls_scores = scores[:, cls_ind]
@@ -111,7 +114,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
         for i in inds:
             bbox = dets[i, :4]
             score = dets[i, -1]
-            fid.write('{0:d}'.format(cls))
+            fid.write('{0:d}'.format(cnt))
             fid.write(' ')
             fid.write('{0:.3f}'.format(score))
             for j in range(4):
