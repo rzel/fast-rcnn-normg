@@ -82,7 +82,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
     # Load the demo image
     im_file = os.path.join(imgdir, image_name + '.jpg')
     im = cv2.imread(im_file)
-    im = np.reshape(im, (1,128,128,3))
+    im = np.reshape(im, (1, im.shape[0], im.shape[1], 3))
     #print(np.shape(im))
 
     # Detect all object classes and regress object bounds
