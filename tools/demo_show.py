@@ -82,6 +82,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
     # Load the demo image
     im_file = os.path.join(imgdir, image_name + '.jpg')
     im = cv2.imread(im_file)
+    im2 = im
     im = np.reshape(im, (1, im.shape[0], im.shape[1], 3))
     #print(np.shape(im))
 
@@ -109,7 +110,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
 
         print 'All {} detections with p({} | box) >= {:.1f}'.format(cls, cls, CONF_THRESH)
         
-        vis_detections(im, cls, dets, thresh=CONF_THRESH)
+        vis_detections(im2, cls, dets, thresh=CONF_THRESH)
 
 
 
