@@ -35,7 +35,7 @@ class nyud2_voc(datasets.imdb):
         self._class_to_ind = dict(zip(self.classes, xrange(self.num_classes)))
         self._image_type = image_type;
         self._image_set = image_set;
-        self._image_ext = '.png'
+        self._image_ext = '.jpg'
         self._image_index = self._load_image_set_index()
         # Default to roidb handler
         self._roidb_handler = self.mcg_roidb
@@ -73,8 +73,7 @@ class nyud2_voc(datasets.imdb):
         """
         # Example path to image set file:
         # self._devkit_path + /VOCdevkit2007/VOC2007/ImageSets/Main/val.txt
-        image_set_file = os.path.join(self._devkit_path, 'benchmarkData', 'metadata',
-                                      'nyusplits.mat')
+        image_set_file = os.path.join(self._devkit_path, 'gensplits.mat')
         assert os.path.exists(image_set_file), \
                 'Path does not exist: {}'.format(image_set_file)
         raw_data = sio.loadmat(image_set_file)[self._image_set].ravel()
@@ -125,7 +124,7 @@ class nyud2_voc(datasets.imdb):
             print '{} ss roidb loaded from {}'.format(self.name, cache_file)
             return roidb
 
-        if True:
+        if False:
             gt_roidb = self.gt_roidb()
             ss_roidb = self._load_mcg_roidb(gt_roidb)
             roidb = datasets.imdb.merge_roidbs(gt_roidb, ss_roidb)
@@ -138,7 +137,7 @@ class nyud2_voc(datasets.imdb):
         return roidb
 
     def _load_mcg_roidb(self, gt_roidb):
-        filename = os.path.abspath(os.path.join('data', 'nyud2_mcg_boxes' + '.mat'))
+        filename = os.path.abspath(os.path.join('data', 'gen_ss_boxes' + '.mat'))
         assert os.path.exists(filename), \
                'Selective search data not found at: {}'.format(filename)
         boxes = sio.loadmat(filename)['bboxes'].ravel()
