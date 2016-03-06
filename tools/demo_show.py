@@ -99,7 +99,6 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
     thresh = 0.3
 
     for cls in classes:
-        cnt = cnt + 1
         cls_ind = CLASSES.index(cls)
         cls_boxes = boxes[:, 4*cls_ind:4*(cls_ind + 1)]
         cls_scores = scores[:, cls_ind]
