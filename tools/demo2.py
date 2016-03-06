@@ -90,8 +90,8 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
     timer.tic()
     scores, boxes = im_detect(net, im, obj_proposals)
     timer.toc()
-    print ('Detection took {:.3f}s for '
-           '{:d} object proposals').format(timer.total_time, boxes.shape[0])
+    # print ('Detection took {:.3f}s for '
+    #       '{:d} object proposals').format(timer.total_time, boxes.shape[0])
 
     # Visualize detections for each class
     CONF_THRESH = 0.8
@@ -153,9 +153,14 @@ if __name__ == '__main__':
     caffemodel = '/nfs.yoda/xiaolonw/fast_rcnn/fast-rcnn-distillation/output/alexnet_rgb_alexnet_hha/nyud2_images+hha_2015_trainval/fast_rcnn_iter_40000_rgb.caffemodel'
 
     # Load pre-computed Selected Search object proposals
-    ssdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2_ss/'
-    imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2/'
-    savedir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2_txt/'
+    # ssdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2_ss/'
+    # imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2/'
+    # savedir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2_txt/'
+
+    ssdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64_ss/'
+    imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64/'
+    savedir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64_txt/'
+
 
     sample_num = 2000
 
@@ -166,7 +171,7 @@ if __name__ == '__main__':
     print '\n\nLoaded network {:s}'.format(caffemodel)
 
     for i in xrange(sample_num):
-        print(i)
+        # print(i)
         image_name = 'img_{:04d}'.format(i + 1)
         save_name = os.path.join(savedir, image_name + '.txt') 
         demo(net, image_name, detclass, ssdir, imgdir, save_name)
