@@ -87,6 +87,7 @@ def demo(net, image_name, classes, ssdir, imgdir, normdir, savefile):
     # Load the demo image
     norm_file = os.path.join(normdir, image_name + '.jpg')
     norm_im = cv2.imread(norm_file)
+    norm_im = cv2.resize(norm_im, (im.shape[0], im.shape[1]) )
     
     im = (im, norm_im)
 
@@ -156,7 +157,7 @@ if __name__ == '__main__':
 
     prototxt = '/nfs.yoda/xiaolonw/fast_rcnn/fast-rcnn-norm2/scripts/joint_rgbnorm/test.prototxt.images+hha'
     caffemodel = '/nfs.yoda/xiaolonw/fast_rcnn/models_norm/alexnet_rgb/fast_rcnn_joint.caffemodel'
-    
+
     # Load pre-computed Selected Search object proposals
     ssdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2_ss/'
     imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2/'
