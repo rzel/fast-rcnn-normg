@@ -154,11 +154,8 @@ if __name__ == '__main__':
 
     sample_num = 2000
 
-    if args.cpu_mode:
-        caffe.set_mode_cpu()
-    else:
-        caffe.set_mode_gpu()
-        caffe.set_device(args.gpu_id)
+    caffe.set_mode_gpu()
+    caffe.set_device(1)
     net = caffe.Net(prototxt, caffemodel, caffe.TEST)
 
     print '\n\nLoaded network {:s}'.format(caffemodel)
