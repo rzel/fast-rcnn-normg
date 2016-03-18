@@ -90,7 +90,7 @@ def vis_detections_print(draw, class_name, dets, thresh=0.5):
         bbox = dets[i, :4]
         score = dets[i, -1]
         draw.rectangle(((bbox[0], bbox[1]), (bbox[2], bbox[3]) ), outline="blue")
-        draw.text((bbox[0], bbox[1]), '{:s} {:.3f}'.format(class_name, score), fill="blue")
+        draw.text((bbox[0], bbox[1]), '{:s} {:.3f}'.format(class_name, score), fill="green")
 
 
 
