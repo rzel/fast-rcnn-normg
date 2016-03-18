@@ -106,7 +106,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
     im = cv2.imread(im_file)
     im2 = Image.open(im_file)
     draw = ImageDraw.Draw(im2)
-    print(np.shape(im2))
+    # print(np.shape(im2))
     im = np.reshape(im, (1, im.shape[0], im.shape[1], 3))
     #print(np.shape(im))
 
