@@ -132,7 +132,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
         keep = nms(dets, NMS_THRESH)
         dets = dets[keep, :]
 
-        print 'All {} detections with p({} | box) >= {:.1f}'.format(cls, cls, CONF_THRESH)
+        # print 'All {} detections with p({} | box) >= {:.1f}'.format(cls, cls, CONF_THRESH)
         
         vis_detections_print(draw, cls, dets, thresh=CONF_THRESH)
 
@@ -175,7 +175,7 @@ if __name__ == '__main__':
     # savedir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64_txt/'
 
 
-    sample_num = 1
+    sample_num = 1000
 
     caffe.set_mode_gpu()
     caffe.set_device(1)
@@ -184,10 +184,8 @@ if __name__ == '__main__':
     print '\n\nLoaded network {:s}'.format(caffemodel)
 
     for j in xrange(sample_num):
-        # print(i)
-        i = 106
-        # i = 175
-        image_name = 'img_{:04d}'.format(i)
+        print(j)
+        image_name = 'img_{:04d}'.format(j)
         save_name = os.path.join(savedir, image_name + '.png') 
         demo(net, image_name, detclass, ssdir, imgdir, save_name)
 
