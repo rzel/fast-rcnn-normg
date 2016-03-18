@@ -108,7 +108,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
     # Load the demo image
     im_file = os.path.join(imgdir, image_name + '.jpg')
     im = cv2.imread(im_file)
-    im2 = im
+    im2 = Image.open(im_file)
     im = np.reshape(im, (1, im.shape[0], im.shape[1], 3))
     #print(np.shape(im))
 
@@ -138,7 +138,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
         
         im2 = vis_detections_print(im2, cls, dets, thresh=CONF_THRESH)
 
-    cv2.imwrite(savefile, im2)
+    im2.save(savefile, "JPG")
 
 
 
