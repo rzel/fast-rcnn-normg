@@ -166,9 +166,9 @@ if __name__ == '__main__':
     caffemodel = '/nfs.yoda/xiaolonw/fast_rcnn/fast-rcnn-distillation/output/alexnet_rgb_alexnet_hha/nyud2_images+hha_2015_trainval/fast_rcnn_iter_40000_rgb.caffemodel'
 
     # Load pre-computed Selected Search object proposals
-    ssdir = '/nfs/hn38/users/xiaolonw/cmp_results/train_3dnormal_jointall_bi_s5_ss/'
-    imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/train_3dnormal_jointall_bi_s5/'
-    savedir = '/nfs/hn38/users/xiaolonw/cmp_results/train_3dnormal_jointall_bi_s5_draw/'
+    ssdir = '/nfs/hn38/users/xiaolonw/dcgan/results_10k/train_3dnormal_jointall_bi_s5_ss/'
+    imgdir = '/nfs/hn38/users/xiaolonw/dcgan/results_10k/train_3dnormal_jointall_bi_s5/'
+    savedir = '/nfs/hn38/users/xiaolonw/dcgan/results_10k/train_3dnormal_jointall_bi_s5_draw/'
 
     # ssdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64_ss/'
     # imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64/'
