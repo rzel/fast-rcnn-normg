@@ -93,8 +93,6 @@ def vis_detections_print(draw, class_name, dets, thresh=0.5):
         draw.text((bbox[0], bbox[1]), '{:s} {:.3f}'.format(class_name, score), fill="blue")
 
 
-    return draw
-
 
 
 def demo(net, image_name, classes, ssdir, imgdir, savefile):
@@ -136,7 +134,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
 
         print 'All {} detections with p({} | box) >= {:.1f}'.format(cls, cls, CONF_THRESH)
         
-        im2 = vis_detections_print(draw, cls, dets, thresh=CONF_THRESH)
+        vis_detections_print(draw, cls, dets, thresh=CONF_THRESH)
 
     im2.save(savefile, "JPG")
 
