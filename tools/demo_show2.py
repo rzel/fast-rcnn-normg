@@ -184,8 +184,9 @@ if __name__ == '__main__':
     print '\n\nLoaded network {:s}'.format(caffemodel)
 
     for j in xrange(sample_num):
-        print(j)
-        image_name = 'img_{:04d}'.format(j)
+        i = j + 1
+        print(i)
+        image_name = 'img_{:04d}'.format(i)
         save_name = os.path.join(savedir, image_name + '.png') 
         demo(net, image_name, detclass, ssdir, imgdir, save_name)
 
