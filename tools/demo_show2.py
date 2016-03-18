@@ -136,7 +136,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
         
         vis_detections_print(draw, cls, dets, thresh=CONF_THRESH)
 
-    im2.save(savefile, "JPG")
+    im2.save(savefile, "PNG")
 
     del draw
 
@@ -188,7 +188,7 @@ if __name__ == '__main__':
         i = 106
         # i = 175
         image_name = 'img_{:04d}'.format(i)
-        save_name = os.path.join(savedir, image_name + '.jpg') 
+        save_name = os.path.join(savedir, image_name + '.png') 
         demo(net, image_name, detclass, ssdir, imgdir, save_name)
 
     plt.show()
