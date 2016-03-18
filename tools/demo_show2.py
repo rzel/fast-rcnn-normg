@@ -90,8 +90,8 @@ def vis_detections_print(im, class_name, dets, thresh=0.5):
     for i in inds:
         bbox = dets[i, :4]
         score = dets[i, -1]
-        draw.chord((bbox[0], bbox[1], bbox[2], bbox[3]), outline='green')
-        draw.text((bbox[0], bbox[1]), '{:s} {:.3f}'.format(class_name, score), fill='blue')
+        draw.chord((bbox[0], bbox[1], bbox[2], bbox[3]), outline="blue")
+        draw.text((bbox[0], bbox[1]), '{:s} {:.3f}'.format(class_name, score), fill="blue")
 
     del draw
 
@@ -109,6 +109,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
     im_file = os.path.join(imgdir, image_name + '.jpg')
     im = cv2.imread(im_file)
     im2 = Image.open(im_file)
+    print(np.shape(im2))
     im = np.reshape(im, (1, im.shape[0], im.shape[1], 3))
     #print(np.shape(im))
 
