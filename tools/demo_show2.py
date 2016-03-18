@@ -89,7 +89,7 @@ def vis_detections_print(draw, class_name, dets, thresh=0.5):
     for i in inds:
         bbox = dets[i, :4]
         score = dets[i, -1]
-        draw.chord((bbox[0], bbox[1], bbox[2], bbox[3]), outline="blue")
+        draw.rectangle(((bbox[0], bbox[1]), (bbox[2], bbox[3]) ), outline="blue")
         draw.text((bbox[0], bbox[1]), '{:s} {:.3f}'.format(class_name, score), fill="blue")
 
 
@@ -139,7 +139,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
         im2 = vis_detections_print(draw, cls, dets, thresh=CONF_THRESH)
 
     im2.save(savefile, "JPG")
-    
+
     del draw
 
 
