@@ -77,12 +77,11 @@ def vis_detections(im, class_name, dets, thresh=0.5):
     plt.draw()
 
 
-def vis_detections_print(im, class_name, dets, thresh=0.5):
+def vis_detections_print(draw, class_name, dets, thresh=0.5):
     """Draw detected bounding boxes."""
     inds = np.where(dets[:, -1] >= thresh)[0]
     if len(inds) == 0:
         return
-    draw = ImageDraw.Draw(im)
 
     # im = im[:, :, (2, 1, 0)]
     # fig, ax = plt.subplots(figsize=(12, 12))
@@ -93,9 +92,8 @@ def vis_detections_print(im, class_name, dets, thresh=0.5):
         draw.chord((bbox[0], bbox[1], bbox[2], bbox[3]), outline="blue")
         draw.text((bbox[0], bbox[1]), '{:s} {:.3f}'.format(class_name, score), fill="blue")
 
-    del draw
 
-    return im
+    return draw
 
 
 
@@ -109,6 +107,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
     im_file = os.path.join(imgdir, image_name + '.jpg')
     im = cv2.imread(im_file)
     im2 = Image.open(im_file)
+    draw = ImageDraw.Draw(im2)
     print(np.shape(im2))
     im = np.reshape(im, (1, im.shape[0], im.shape[1], 3))
     #print(np.shape(im))
@@ -137,9 +136,11 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
 
         print 'All {} detections with p({} | box) >= {:.1f}'.format(cls, cls, CONF_THRESH)
         
-        im2 = vis_detections_print(im2, cls, dets, thresh=CONF_THRESH)
+        im2 = vis_detections_print(draw, cls, dets, thresh=CONF_THRESH)
 
     im2.save(savefile, "JPG")
+    
+    del draw
 
 
 
