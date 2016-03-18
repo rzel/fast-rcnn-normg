@@ -146,7 +146,7 @@ if __name__ == '__main__':
     # savedir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64_txt/'
 
 
-    sample_num = 2000
+    sample_num = 1
 
     caffe.set_mode_gpu()
     caffe.set_device(1)
@@ -154,9 +154,11 @@ if __name__ == '__main__':
 
     print '\n\nLoaded network {:s}'.format(caffemodel)
 
-    for i in xrange(sample_num):
+    for j in xrange(sample_num):
         # print(i)
-        image_name = 'img_{:04d}'.format(i + 1)
+        i = 106
+        # i = 175
+        image_name = 'img_{:04d}'.format(i)
         save_name = os.path.join(savedir, image_name + '.txt') 
         demo(net, image_name, detclass, ssdir, imgdir, save_name)
 

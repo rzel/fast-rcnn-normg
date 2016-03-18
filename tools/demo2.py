@@ -96,7 +96,7 @@ def demo(net, image_name, classes, ssdir, imgdir, savefile):
     # Visualize detections for each class
     CONF_THRESH = 0.8
     NMS_THRESH = 0.3
-    thresh = 0.3
+    thresh = 0.05
     fid = open(savefile,'w')
 
     cnt = 0
@@ -157,12 +157,12 @@ if __name__ == '__main__':
     # imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2/'
     # savedir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan_normal3_train_3dnormal_joint4_2_txt/'
 
-    ssdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64_ss/'
-    imgdir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64/'
-    savedir = '/nfs/hn38/users/xiaolonw/cmp_results/dcgan-nyu_64_txt/'
+    ssdir = '/nfs/hn38/users/xiaolonw/dcgan/results_10k/train_3dnormal_jointall_bi_s5_ss/'
+    imgdir = '/nfs/hn38/users/xiaolonw/dcgan/results_10k/train_3dnormal_jointall_bi_s5/'
+    savedir = '/nfs/hn38/users/xiaolonw/dcgan/results_10k/train_3dnormal_jointall_bi_s5_txt/'
 
 
-    sample_num = 2000
+    sample_num = 9999
 
     caffe.set_mode_gpu()
     caffe.set_device(1)
